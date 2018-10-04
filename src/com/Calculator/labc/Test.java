@@ -55,6 +55,7 @@ public class Test {
 						System.out.println(a);
 					}
 					else if(input.equals("$")) {
+						i=stack.size();
 						a=Math.sqrt(stack.get(i-1));
 						System.out.println(a);
 					}
@@ -62,7 +63,6 @@ public class Test {
 						while(!stack.empty()) {
 							stack.pop();
 							a=0;
-							i=0;
 						}
 					}
 					else if(input.equals("omg")) {
@@ -70,7 +70,6 @@ public class Test {
 						while(!stack.empty()) {
 							stack.pop();
 							a=0;
-							i=0;
 						}
 					}
 					stack.push(a);
