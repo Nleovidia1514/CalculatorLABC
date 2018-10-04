@@ -3,13 +3,9 @@ import java.util.*;
 
 public class Main {
 	
-
-	public static void main(String[] args) {
-		Scanner sn = new Scanner(System.in);
-		Operations ops= new Operations();
+    public static void main(String[] args) {
 		Test test = new Test();
 		test.ops();
-	
-		}
+	}
 }
 
