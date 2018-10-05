@@ -1,16 +1,16 @@
 package com.Calculator.labc;
 import java.util.*;
 
-public class Test {
+public class Test extends Gui {
+	public static Stack<Double> stack = new Stack<Double>();
+	public int i=0;
+	public String input="";
 	
 	public void ops() {
 		double A=0,B=0,C=0;
 		//i permite que el programa funcione correctamente
-		int i=0;
-		double a = 0;
-		Stack<Double> stack = new Stack<Double>();
-		String input="";
-		Scanner sn = new Scanner(System.in);
+	    double a = 0;
+	    Scanner sn = new Scanner(System.in);
 		while(!input.equals("x")) {
 			//Si la entrada es de tipo double ejecuta el try statement 
 			//si es de tipo String ejecuta el catch statement
@@ -26,19 +26,19 @@ public class Test {
 						while(stack.size()>i) {
 							a+=stack.pop();						
 						}
-						System.out.println(a);
+						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("-")) {
 						while(stack.size()>i) {
 							a-=stack.pop();
 						}
-				        System.out.println(a);
+						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("*")) {
 						while(stack.size()>i) {
 							a=a*stack.pop();
 						}
-					    System.out.println(a);
+						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("/")) {
 						while(stack.size()>i) {
@@ -46,18 +46,18 @@ public class Test {
 							g=stack.get(i-1);d=stack.pop();
 							a=g/d;
 						}
-						System.out.println(a);
+						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("^")) {
 						double d,g;
 						d=stack.get(i-1);g=stack.pop();
 						a=Math.pow(d, g);
-						System.out.println(a);
+						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("$")) {
 						i=stack.size();
 						a=Math.sqrt(stack.get(i-1));
-						System.out.println(a);
+						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("c")) {
 						while(!stack.empty()) {
@@ -66,7 +66,7 @@ public class Test {
 						}
 					}
 					else if(input.equals("omg")) {
-						System.out.println("You've found an easter egg c:");
+						printCalculator("You've found an easter egg c:");
 						while(!stack.empty()) {
 							stack.pop();
 							a=0;
@@ -82,50 +82,53 @@ public class Test {
 					    if(A==0) {
 					    	i=stack.size()-1;
 							A=stack.get(i);
-							System.out.println("A-->"+A);
+							printCalculator("A-->"+A);
 							i=stack.size();
 					    }
 					    else {
 					    	System.out.println(A);
 					    	stack.push(A);
+					    	printCalculator(stack.get(stack.size()-1).toString());
 					    }
 					}
 					else if(input.equals("B")) {
 						if(B==0) {
 							i=stack.size()-1;
 							B=stack.get(i);
-							System.out.println("B-->"+B);
+							printCalculator("B-->"+B);
 							i=stack.size();
 						}
 						else {
 							System.out.println(B);
 							stack.push(B);
+							printCalculator(stack.get(stack.size()-1).toString());
 						}
 					}
 					else if(input.equals("C")) {
 						if(C==0) {
 							i=stack.size()-1;
 							C=stack.get(i);
-							System.out.println("C-->"+C);
+							printCalculator("C-->"+C);
 							i=stack.size();
 						}
 						else {
 							System.out.println(C);
 							stack.push(C);
+							printCalculator(stack.get(stack.size()-1).toString());
 						}
 					}
 					//Borra el valor de las variables para poder asignarle uno nuevo
 					else if(input.equals("cA")) {
 						A=0;
-						System.out.println("A-->"+A);
+						printCalculator("A-->"+A);
 					}
 					else if(input.equals("cB")) {
 						B=0;
-						System.out.println("B-->"+B);
+						printCalculator("B-->"+B);
 					}
 					else if(input.equals("cC")) {
 						C=0;
-						System.out.println("C-->"+C);
+						printCalculator("C-->"+C);
 					}
 				}
 				else if(!input.equals("x")) {
@@ -135,7 +138,13 @@ public class Test {
 				//de la pila
 				
 			}
+			printCalculator(stack.get(stack.size()-1).toString());
 		}
-		System.out.print("Thank you for using my RPN calculator! :3");
+		printCalculator("Thank you for using my RPN calculator! :3");
+	}
+	
+	
+	public String toString(){
+		return "";
 	}
 }
