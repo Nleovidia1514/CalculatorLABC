@@ -2,21 +2,22 @@ package com.Calculator.labc;
 import java.util.*;
 
 public class Test extends Gui {
-	public static Stack<Double> stack = new Stack<Double>();
-	public int i=0;
-	public String input="";
+	private static Stack<Double> stack = new Stack<Double>();
+	//i permite que el programa funcione correctamente
+	private int i=0;
+	private String input="";
+	private double A=0,B=0,C=0;
+	private double a = 0;
+	private Scanner sn = new Scanner(System.in);
 	
 	public void ops() {
-		double A=0,B=0,C=0;
-		//i permite que el programa funcione correctamente
-	    double a = 0;
-	    Scanner sn = new Scanner(System.in);
 		while(!input.equals("x")) {
 			//Si la entrada es de tipo double ejecuta el try statement 
 			//si es de tipo String ejecuta el catch statement
 			try {
 				input=sn.next();
 				stack.push(Double.valueOf(input));
+				printCalculator(stack.get(stack.size()-1).toString());
 			}catch(Exception e) {
 				if(input.equals("+")||input.equals("-")||input.equals("*")||input.equals("/")||input.equals("c")||input.equals("omg")
 				||input.equals("$")||input.equals("^")) {
@@ -30,28 +31,30 @@ public class Test extends Gui {
 					}
 					else if(input.equals("-")) {
 						while(stack.size()>i) {
-							a-=stack.pop();
+							double b=stack.pop();
+							a=stack.pop()-b;
 						}
 						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("*")) {
 						while(stack.size()>i) {
-							a=a*stack.pop();
+							a=stack.pop()*stack.pop();
 						}
 						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("/")) {
 						while(stack.size()>i) {
 							double d,g;
-							g=stack.get(i-1);d=stack.pop();
+							d=stack.pop();g=stack.pop();
 							a=g/d;
 						}
 						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("^")) {
 						double d,g;
-						d=stack.get(i-1);g=stack.pop();
-						a=Math.pow(d, g);
+						i=stack.size();
+						g=stack.pop();d=stack.pop();
+						a=Math.pow(d,g);
 						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("$")) {
@@ -63,6 +66,7 @@ public class Test extends Gui {
 						while(!stack.empty()) {
 							stack.pop();
 							a=0;
+							printCalculator("|   |       CLEARED!");
 						}
 					}
 					else if(input.equals("omg")) {
@@ -86,7 +90,6 @@ public class Test extends Gui {
 							i=stack.size();
 					    }
 					    else {
-					    	System.out.println(A);
 					    	stack.push(A);
 					    	printCalculator(stack.get(stack.size()-1).toString());
 					    }
@@ -99,7 +102,6 @@ public class Test extends Gui {
 							i=stack.size();
 						}
 						else {
-							System.out.println(B);
 							stack.push(B);
 							printCalculator(stack.get(stack.size()-1).toString());
 						}
@@ -112,7 +114,6 @@ public class Test extends Gui {
 							i=stack.size();
 						}
 						else {
-							System.out.println(C);
 							stack.push(C);
 							printCalculator(stack.get(stack.size()-1).toString());
 						}
@@ -136,9 +137,9 @@ public class Test extends Gui {
 				}
 				//Se coloca el resultado de la operacion encima 
 				//de la pila
-				
+				//stack.push(a);
 			}
-			printCalculator(stack.get(stack.size()-1).toString());
+
 		}
 		printCalculator("Thank you for using my RPN calculator! :3");
 	}

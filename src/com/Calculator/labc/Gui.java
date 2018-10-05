@@ -25,9 +25,10 @@ public class Gui{
 		System.out.println("|   |  +  | |  -  | |  *  | |  /  |    |");
 		System.out.println("|   |_____| |_____| |_____| |_____|    |");
 		System.out.println("|______________________________________|");
+		System.out.println("--->                                   ");
 	}
 	
-	public void printCalculator(String a) {
+	protected void printCalculator(String a) {
 		calcTop();
 	    if(!a.equals("x")) {
 			System.out.println("|   |"+a);
