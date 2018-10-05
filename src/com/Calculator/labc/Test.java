@@ -20,7 +20,7 @@ public class Test extends Gui {
 				printCalculator(stack.get(stack.size()-1).toString());
 			}catch(Exception e) {
 				if(input.equals("+")||input.equals("-")||input.equals("*")||input.equals("/")||input.equals("c")||input.equals("omg")
-				||input.equals("$")||input.equals("^")) {
+				||input.equals("$")||input.equals("^")||input.equals("zelda")) {
 					//Se utiliza un contador para sumar todo lo que pueda
 					//introducir el usuario
 					if (input.equals("+")) {
@@ -43,19 +43,28 @@ public class Test extends Gui {
 						printCalculator(String.valueOf(a));
 					}
 					else if(input.equals("/")) {
-						while(stack.size()>i) {
-							double d,g;
-							d=stack.pop();g=stack.pop();
-							a=g/d;
+						if(stack.size()<2) {
+							printCalculator("Syntax error");
 						}
-						printCalculator(String.valueOf(a));
+						else {
+							while(stack.size()>i) {
+								double d,g;
+								d=stack.pop();g=stack.pop();
+								a=g/d;
+							}
+							printCalculator(String.valueOf(a));
+						}
 					}
 					else if(input.equals("^")) {
 						double d,g;
-						i=stack.size();
-						g=stack.pop();d=stack.pop();
-						a=Math.pow(d,g);
-						printCalculator(String.valueOf(a));
+						if(stack.size()<2) {
+							printCalculator("Syntax error");
+						}
+						else {
+							g=stack.pop();d=stack.pop();
+							a=Math.pow(d,g);
+							printCalculator(String.valueOf(a));
+						}
 					}
 					else if(input.equals("$")) {
 						i=stack.size();
@@ -66,11 +75,18 @@ public class Test extends Gui {
 						while(!stack.empty()) {
 							stack.pop();
 							a=0;
-							printCalculator("|   |       CLEARED!");
+							printCalculator("                      CLEARED!                        |   |");
 						}
 					}
 					else if(input.equals("omg")) {
-						printCalculator("You've found an easter egg c:");
+						printCalculator("            You've found an easter egg c:             |   |");
+						while(!stack.empty()) {
+							stack.pop();
+							a=0;
+						}
+					}
+					else if (input.equals("zelda")) {
+					    zelda();
 						while(!stack.empty()) {
 							stack.pop();
 							a=0;
@@ -133,7 +149,7 @@ public class Test extends Gui {
 					}
 				}
 				else if(!input.equals("x")) {
-					System.out.println("Syntax error");
+					printCalculator("                   Syntax error                     |   |");
 				}
 				//Se coloca el resultado de la operacion encima 
 				//de la pila
@@ -141,7 +157,7 @@ public class Test extends Gui {
 			}
 
 		}
-		printCalculator("Thank you for using my RPN calculator! :3");
+		printCalculator("      Thank you for using my RPN calculator! :3       |   |");
 	}
 	
 	

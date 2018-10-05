@@ -6,7 +6,7 @@ public class Executable {
 		Gui ui = new Gui();
 		Test test = new Test();
 		ui.calcTop();
-		System.out.println("|   |Welcome to my RPN java calculator |");
+		System.out.println("|   |        Welcome to my RPN java calculator             |   |");
 		ui.calcBottom();
 		test.ops();
     }
