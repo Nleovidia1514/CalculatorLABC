@@ -28,23 +28,45 @@ public class Test extends Gui {
 							a+=stack.pop();						
 						}
 						printCalculator(String.valueOf(a));
+						stack.push(a);
 					}
 					else if(input.equals("-")) {
-						while(stack.size()>i) {
-							double b=stack.pop();
-							a=stack.pop()-b;
+						if (stack.size()<2) {
+							printCalculator("                     Syntax error                     |   |");
 						}
-						printCalculator(String.valueOf(a));
-					}
+						else {
+							try{
+								a=stack.remove(i-1);
+								while(stack.size()>i-1) {
+									a=a-stack.pop();
+							    }
+							}catch(Exception o) {
+								a=stack.remove(0);
+								while(stack.size()>i) {
+									a=a-stack.pop();
+							    }
+							}
+							System.out.println(a);
+							
+							printCalculator(String.valueOf(a));
+							stack.push(a);
+				       }
+					}	
 					else if(input.equals("*")) {
-						while(stack.size()>i) {
-							a=stack.pop()*stack.pop();
+						if(stack.size()<2) {
+							printCalculator("                     Syntax error                     |   |");
+						}
+						else {
+							while(stack.size()>i) {
+								a=stack.pop()*stack.pop();
+						   }
 						}
 						printCalculator(String.valueOf(a));
+						stack.push(a);
 					}
 					else if(input.equals("/")) {
 						if(stack.size()<2) {
-							printCalculator("Syntax error");
+							printCalculator("                     Syntax error                     |   |");
 						}
 						else {
 							while(stack.size()>i) {
@@ -54,22 +76,27 @@ public class Test extends Gui {
 							}
 							printCalculator(String.valueOf(a));
 						}
+						stack.push(a);
 					}
 					else if(input.equals("^")) {
 						double d,g;
 						if(stack.size()<2) {
-							printCalculator("Syntax error");
+							printCalculator("                     Syntax error                     |   |");
+							
 						}
 						else {
 							g=stack.pop();d=stack.pop();
 							a=Math.pow(d,g);
 							printCalculator(String.valueOf(a));
+							
 						}
+						stack.push(a);
 					}
 					else if(input.equals("$")) {
 						i=stack.size();
 						a=Math.sqrt(stack.get(i-1));
 						printCalculator(String.valueOf(a));
+						stack.push(a);
 					}
 					else if(input.equals("c")) {
 						while(!stack.empty()) {
@@ -92,7 +119,6 @@ public class Test extends Gui {
 							a=0;
 						}
 					}
-					stack.push(a);
 					i=stack.size();
 				}
 				//Operaciones para el manejo de variables en la memoria de la calculadora
@@ -149,7 +175,7 @@ public class Test extends Gui {
 					}
 				}
 				else if(!input.equals("x")) {
-					printCalculator("                   Syntax error                     |   |");
+					printCalculator("                     Syntax error                     |   |");
 				}
 				//Se coloca el resultado de la operacion encima 
 				//de la pila

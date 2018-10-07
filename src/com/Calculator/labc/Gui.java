@@ -2,7 +2,7 @@ package com.Calculator.labc;
 
 public class Gui{
 	
-	public void calcTop() {
+	private void calcTop() {
 		System.out.println("________________________________________________________________");
 		System.out.println("|    RPN                                        By LeoB        |");
 		System.out.println("|       CALCULATOR                                             |");
@@ -10,7 +10,7 @@ public class Gui{
 		System.out.println("|   |                                                      |   |");
 	}
 	
-	public void calcBottom() {
+	private void calcBottom() {
 		System.out.println("|   |______________________________________________________|   |");
 		System.out.println("|   _______ _______ _______          _______ _______ _______   |");
 		System.out.println("|   |     | |     | |     |          |     | |     | |     |   |");
@@ -28,18 +28,13 @@ public class Gui{
 		System.out.println("--->                                   ");
 	}
 	
-	protected void printCalculator(String a) {
+	public void printCalculator(String a) {
 		calcTop();
-	    if(!a.equals("x")) {
-			System.out.println("|   |"+a);
-		}
-		else {
-			System.out.println("Thanks for using my RPN Java calculator :#");
-		}
-		calcBottom();
+	    System.out.println("|   |"+a);
+	    calcBottom();
 	}
 	
-	public void zelda() {
+	protected void zelda() {
 		printCalculator("Hey listen");
 		
 	}
