@@ -46,8 +46,6 @@ public class Test extends Gui {
 									a=a-stack.pop();
 							    }
 							}
-							System.out.println(a);
-							
 							printCalculator(String.valueOf(a));
 							stack.push(a);
 				       }
